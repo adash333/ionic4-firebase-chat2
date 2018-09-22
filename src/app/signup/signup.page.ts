@@ -3,13 +3,12 @@ import { AlertController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import * as firebase from 'firebase';
 
-
 @Component({
-  selector: 'app-signin',
-  templateUrl: './signin.page.html',
-  styleUrls: ['./signin.page.scss'],
+  selector: 'app-signup',
+  templateUrl: './signup.page.html',
+  styleUrls: ['./signup.page.scss'],
 })
-export class SigninPage implements OnInit {
+export class SignupPage implements OnInit {
 
   data: { email: string, password: string } = { email: '', password: '' };
 
@@ -21,12 +20,12 @@ export class SigninPage implements OnInit {
   ngOnInit() {
   }
 
-  async signIn() {
+  async signUp() {
     try {
       await firebase
         .auth()
-        .signInWithEmailAndPassword(this.data.email, this.data.password);
-        this.router.navigate(['/room']);
+        .createUserWithEmailAndPassword(this.data.email, this.data.password);
+      this.router.navigate(['/room']);
     } catch (error) {
       const alert = await this.alertController.create({
         header: '警告',
@@ -35,10 +34,6 @@ export class SigninPage implements OnInit {
       });
       alert.present();
     }
-  }
-
-  signUp() {
-    this.router.navigate(['/signup']);
   }
 
 }
