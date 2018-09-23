@@ -10,16 +10,36 @@ import { Router } from '@angular/router';
 })
 export class RoomPage implements OnInit {
 
+  rooms = [];
+
   constructor(private router: Router) { }
 
-  ngOnInit() {
-    firebase.auth().onAuthStateChanged((user) => {
-      if (user) {
+async ngOnInit() {
+
+  firebase.auth().onAuthStateChanged((user) => {
+    if (user) {
+      firebase.database().ref('chatrooms/').on('value', resp => {
+        if (resp) {
+          this.rooms = [];
+          resp.forEach(childSnapshot => {
+            const room = childSnapshot.val();
+            room.key = childSnapshot.key;
+            this.rooms.push(room);
+          });
+        }
+      });
       } else {
-        //this.navCtrl.goRoot('signin')
         this.router.navigate(['/signin']);
       }
-    })
+    });
+  }
+
+  joinRoom(key) {
+    this.router.navigate(['/chat/' + key]);
+  }
+
+  addRoom() {
+    this.router.navigate(['/add-room']);
   }
 
   async signOut() {
@@ -29,5 +49,4 @@ export class RoomPage implements OnInit {
 
     } catch (error) {}
   }
-
 }
