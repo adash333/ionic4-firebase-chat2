@@ -27,7 +27,9 @@ export class ChatPage implements OnInit {
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
         this.roomkey = this.route.snapshot.paramMap.get('key') as string;
-        this.nickname = user.email;
+        // 基準文字列から前の文字列を切り出して表示
+        var index = user.email.indexOf("@");
+        this.nickname = user.email.substring(0, index);
 
         this.sendJoinMessage();
         this.displayChatMessage();
@@ -88,6 +90,8 @@ export class ChatPage implements OnInit {
       message: message,
       sendDate: Date()
     });
+    this.chatMessage = ""
+    this.scroll();
   }
 
 }
