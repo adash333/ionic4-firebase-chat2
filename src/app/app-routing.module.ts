@@ -8,6 +8,7 @@ const routes: Routes = [
   { path: 'room', loadChildren: './room/room.module#RoomPageModule' },
   { path: 'signup', loadChildren: './signup/signup.module#SignupPageModule' },
   { path: 'add-room', loadChildren: './add-room/add-room.module#AddRoomPageModule' },
+  { path: 'chat', loadChildren: './chat/chat.module#ChatPageModule' },
 ];
 
 @NgModule({
