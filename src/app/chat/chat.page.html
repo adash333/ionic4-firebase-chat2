@@ -19,22 +19,24 @@
       </div>
 
       <ng-template #message>
-        
-        <div class="chat-message" text-right *ngIf="chat.user === nickname">
-          <div class="right-bubble">
-            <span class="msg-name">Me </span>
-            <span class="msg-date">{{chat.sendDate | date: 'yy/MM/dd (EEE) HH:mm'}}</span>
-            <p text-wrap>{{chat.message}}</p>
-          </div>
-        </div>
 
-        <div class="chat-message" text-left *ngIf="chat.user !== nickname">
-          <div class="left-bubble">
-            <span class="msg-name">{{chat.user}} </span>
-            <span class="msg-date">{{chat.sendDate | date: 'yy/MM/dd (EEE) HH:mm'}}</span>
-            <p text-wrap>{{chat.message}}</p>
-          </div>
-        </div>
+        <ion-item text-wrap>
+          <!--chat.userとnicknameが等しくない場合に表示-->
+          <ion-avatar slot="start" *ngIf="chat.user !== nickname">
+            <img src="assets/imgs/kuma.png"/>
+          </ion-avatar>
+
+          <ion-label text-wrap class="media-body">
+            <h2>{{chat.message}}</h2>
+            <small>{{chat.user}} Date:{{chat.sendDate | date: 'yy/MM/dd (EEE) HH:mm'}}</small>
+          </ion-label>
+          
+          <!--chat.userとnicknameが等しい場合に表示-->
+          <ion-avatar slot="end" *ngIf="chat.user === nickname">
+              <img src="assets/imgs/usagi.png"/>
+            </ion-avatar>
+          <tr>   
+        </ion-item>
 
       </ng-template>
     </ion-item>

@@ -1,5 +1,5 @@
 ion-content {
-  background-color: #D7EEFF;
+  background-color: white;  //#D7EEFF
   background-size: cover;
   height: 100%;
   overflow: hidden;
@@ -39,11 +39,21 @@ ion-footer {
       border-radius: 6px;
       font-size: 12px;
       color: #555;
-      height: 34px;
       left: 10%;
       right:10%;
   }
 }
+
+.media-body {
+  padding: 5px 10px;
+  background-color: #98fb98;
+  border-radius: 6px;
+  font-size: 12px;
+  color: #555;
+  left: 10%;
+  right:10%;
+}
+
 .chat-message {
   width: 80%;
   min-height: 40px;
